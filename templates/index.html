@@ -1,0 +1,116 @@
+{% extends 'base.html' %} {% block content %}
+
+
+<!-- ======= Hero Slider Section ======= -->
+<section id="hero-slider" class="hero-slider">
+    <div class="container-md" data-aos="fade-in">
+        <div class="row">
+            <div class="col-12">
+                <div class="swiper sliderFeaturedPosts">
+                    <div class="swiper-wrapper">
+
+                        {% for b in b %}
+                        <div class="swiper-slide">
+<a href="/read/{{ b[0]}}" class="img-bg d-flex align-items-end" style="background-image: url('{{ url_for('static', filename='blogImages/' + b[5]) }}');">
+                                <div class="img-bg-inner">
+                                    <h2 class="h1">{{ b[3]}}</h2>
+                                    <h5 class="text-light">{{ b[6]}}</h5>
+                                        <div class="d-flex align-items-center author">
+                            <div class="photo"><img src="{{ url_for('static', filename='blogImages/' + b[13]) }}" alt="" class="img-fluid"></div>
+                            <div class="name">
+                                <h3 class="m-0 p-0 text-light">{{b[10]}} {{b[11]}}</h3>
+                                <h3 class="m-0 p-0 text-light">{{b[12]}}</h3>
+
+                            </div>
+                        </div>
+                                    
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                    <div class="custom-swiper-button-next">
+                        <span class="bi-chevron-right"></span>
+                    </div>
+                    <div class="custom-swiper-button-prev">
+                        <span class="bi-chevron-left"></span>
+                    </div>
+
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Hero Slider Section -->
+
+
+<!-- ======= Post Grid Section ======= -->
+<section id="posts" class="posts">
+    <div class="container" data-aos="fade-up">
+
+  <div class="section-header d-flex justify-content-between align-items-center mb-5">
+          <h2>Latest Posts</h2>
+        </div>
+ 
+
+        <div class="row g-5">
+            {% for b1 in b1 %}
+            <div class="col-lg-4">
+                <div class="post-entry-1 lg">
+                    <a href="/read/{{b1[0]}}"><img src="{{ url_for('static', filename='blogImages/' + b1[5]) }}" alt="" class="img-fluid"></a>
+                    <div class="post-meta"><span class="date">{{b1[8]}}</span> <span class="mx-1">&bullet;</span> <span>{{b1[6]}}</span></div>
+                    <h2><a href="/read/{{b1[0]}}">{{b1[3]}}</a></h2>
+                    <p class="mb-4 d-block">{{ b1[4][:290] | safe }}{% if b1[4]|length > 290 %}...{% endif %}</p>
+
+                    <div class="d-flex align-items-center author">
+                        <div class="photo"><img src="{{ url_for('static', filename='blogImages/' + b1[13]) }}" alt="" class="img-fluid"></div>
+                        <div class="name">
+                            <h3 class="m-0 p-0">{{b1[10]}} {{b1[11]}}</h3>
+                            <p>{{b1[12]}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="col-lg-8">
+                <div class="row g-5">
+                    {% for row in blog %}
+                    <div class="col-lg-4 border-start custom-border">
+                        <div class="post-entry-1">
+                            <a href="/read/{{row[0]}}"><img src="{{ url_for('static', filename='blogImages/' + row[5]) }}" style="height:10rem; width:12rem;" alt="" class="img-fluid"></a>
+                            <div class="post-meta"><span class="date">{{row[8]}}</span> <span class="mx-1">&bullet;</span> <span>{{row[6]}}</span></div>
+                            <h2><a href="/read/{{row[0]}}">{{row[3]}}</a></h2>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+    <!-- End .row -->
+    </div>
+</section>
+<!-- End Post Grid Section -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends '/admin/base.html' %} {% block content %}
+<h1>A About</h1>
+{% for about in about %}
+<form method="POST" action="/admin/about/add" enctype="multipart/form-data">
+    <label for="Title">Title:</label>
+    <input type="text" id="title" name="title" value="{{ about[1] }}" class="form-control" required>
+    <br>
+    <label for="blogImage">Image:</label>
+    <input type="file" id="aboutImage" name="aboutImage"  class="form-control" accept="image/*">
+    <div class="card">
+       {% if about[3] %}
+    <img src="{{ url_for('static', filename='blogImages/' + about[3]) }}" alt="About Image" width="100"> {% else %} No Image {% endif %}
+    </div>
+    <label for="blogContent">Description:</label>
+    <textarea id="description" name="description"  class="form-control" required>{{about[2]}}</textarea>
+    <br>
+    <input type="submit" value="Add About" class="w-100 btn btn-primary">
+</form>
+{% endfor %}
+
+{% endblock %}

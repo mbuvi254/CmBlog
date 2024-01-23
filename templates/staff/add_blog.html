@@ -1,0 +1,25 @@
+{% extends '/staff/base.html' %} {% block content %}
+<h1>Add Blog</h1>
+
+<form method="POST" action="/staff/blog/add" enctype="multipart/form-data">
+    <input type="hidden" name="authorID" value="{{session['staff_id']}}" class="form-control" required>
+    <label for="blogTitle">Title:</label>
+    <input type="text" id="blogTitle" name="blogTitle" class="form-control" required>
+    <br>
+    <label for="blogContent">Content:</label>
+    <textarea id="blogContent" name="blogContent" class="form-control" required></textarea>
+    <br>
+    <label for="categoryID">Category:</label>
+    <select id="categoryID" name="categoryID" class="form-control" required>
+        <option>Select Blog Category</option>
+            {% for category in categories %}
+            <option value="{{ category[0] }}">{{ category[1] }}</option>
+            {% endfor %}
+        </select>
+    <br>
+    <label for="blogImage">Image:</label>
+    <input type="file" id="blogImage" name="blogImage" class="form-control" accept="image/*">
+    <br>
+    <input type="submit" value="Add Blog" class="w-100 btn btn-primary">
+</form>
+{% endblock %}

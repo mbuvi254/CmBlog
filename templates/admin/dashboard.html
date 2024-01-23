@@ -1,0 +1,24 @@
+ {% extends "/admin/base.html" %} {% block content %}
+<div class="container">
+    <div class="card" style="padding:1rem;">
+        <h2>Welcome!</h2>
+
+        {% if 'admin_email' in session %}
+        <div class="row">
+            <div class="col-4">
+                <img src="/static/blogImages/{{session['admin_image']}} " class="rounded float-left" alt="{{session['admin_image']}}" style="height:10rem; width:10rem;">
+            </div>
+            <div class="col-8">
+                <h3>{{ session['admin_firstname'] }} {{ session['admin_lastname'] }}</h3>
+                <h5>{{ session['admin_email'] }}</h5>
+            </div>
+        </div>
+        {% endif %}
+
+
+
+    </div>
+</div>
+
+
+{% endblock %}

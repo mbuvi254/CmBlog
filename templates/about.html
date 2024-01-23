@@ -1,0 +1,59 @@
+    {% extends 'base.html'%}
+    {% block content  %}
+    <section>
+      <div class="container" data-aos="fade-up">
+        <div class="row">
+          <div class="col-lg-12 text-center mb-5">
+            <h1 class="page-title">About us</h1>
+          </div>
+        </div>
+{% for about in about %}
+        <div class="row mb-5">
+
+          <div class="d-md-flex post-entry-2 half">
+            <a href="#" class="me-4 thumbnail">
+              <img src="/static/img/cm.png" alt="" class="img-fluid">
+            </a>
+            <div class="ps-md-5 mt-4 mt-md-0">
+              <div class="post-meta mt-4">About us</div>
+              <h2 class="mb-4 display-4">{{about[1]}}</h2>
+
+              <p>{{about[2] | safe}} </p>
+            </div>
+          </div>
+
+        </div>
+        {% endfor %}
+
+      </div>
+    </section>
+
+    <section>
+      <div class="container" data-aos="fade-up">
+        <div class="row">
+          <div class="col-12 text-center mb-5">
+            <div class="row justify-content-center">
+              <div class="col-lg-6">
+                <h2 class="display-4">Our Team</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil sint sed, fugit distinctio ad eius itaque deserunt doloribus harum excepturi laudantium sit officiis et eaque blanditiis. Dolore natus excepturi recusandae.</p>
+              </div>
+            </div>
+          </div>
+
+{% for staff in staff  %}
+          <div class="col-lg-4 text-center mb-5">
+            <img src="{{ url_for('static', filename='blogImages/' + staff[5]) }}" alt="" class="img-fluid rounded-circle w-50 mb-4">
+            <h4>{{staff[1]}} {{staff[2]}}</h4>
+            <span class="d-block mb-3 text-uppercase">Founder &amp; CEO</span>
+            <p></p>
+            <p>{{staff[3]}}</p>
+          </div>
+       {% endfor %}  
+
+        </div>
+      </div>
+    </section>
+
+  
+
+    {% endblock  %}

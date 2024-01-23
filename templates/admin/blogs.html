@@ -1,0 +1,46 @@
+{% extends '/admin/base.html' %}
+{% block content %}
+    <h1>Blogs</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Image</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for blog in blogs %}
+            <tr>
+                 <td>{{ blog[0] }}</td>
+                <td>{{ blog[2] }}</td>
+                <td>{{ blog[7] }}</td>
+                <td>
+                    {% if blog[3] %}
+                        <img src="{{ url_for('static', filename='blogImages/' + blog[4]) }}" alt="Blog Image" width="100">
+                    {% else %}
+                        No Image
+                    {% endif %}
+                </td>
+                   <td>
+                    {% if blog[5] %}
+                    <a href="" class="btn btn-success">Published</a>
+                     {% else %}
+                     <a href="" class="btn btn-secondary">Reviewing</a>
+                     {% endif %}
+
+                </td>
+                <td>
+                    <a href="/admin/blog/{{ blog[0] }}" class="btn btn-secondary">Read</a>
+                    <a href="/admin/blog/edit/{{ blog[0] }}" class="btn btn-primary">Edit</a>
+                    <a href="/admin/blog/delete/{{ blog[0] }}" class="btn btn-danger">Delete</a>
+                    <a href="/admin/blog/publish/{{ blog[0] }}" class="btn btn-success">Publish</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

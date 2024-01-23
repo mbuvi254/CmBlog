@@ -1,0 +1,32 @@
+{% extends "/admin/base.html" %} {% block content %}
+<div>
+      {% if blog[3] %}
+                        <img src="{{ url_for('static', filename='blogImage/' + blog[3]) }}" alt="Blog Image" width="100">
+                    {% else %}
+                        No Image
+                    {% endif %}
+    <h2>{{ blog[1] }}</h2>
+    <p>{{ blog[2] }}</p>
+    <p>Category: {{ blog[3] }}</p>
+</div>
+
+<h2>Comments</h2>
+{% for comment in comments %}
+<div>
+    <p><strong>{{ comment[1] }}</strong></p>
+    <p>{{ comment[2] }}</p>
+</div>
+{% endfor %}
+
+<h2>Add Comment</h2>
+<form method="POST" action="/admin/comment/add/{{ blog[0] }}">
+    <label for="commentName">Name:</label>
+    <input type="text" id="commentName" name="commentName" class="form-control" required>
+    <br>
+    <label for="commentContent">Content:</label>
+    <textarea id="commentContent" name="commentContent" class="form-control" required></textarea>
+    <br>
+    <input type="submit" value="Add Comment" class="btn btn-primary w-100">
+</form>
+
+<a href="/blogs" class="btn btn-primary">Back to Blogs</a> {% endblock %}

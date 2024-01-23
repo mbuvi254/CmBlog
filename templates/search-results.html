@@ -1,0 +1,59 @@
+{% extends 'base.html' %} {% block content %}
+<!-- ======= Search Results ======= -->
+<section id="search-result" class="search-result">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <h3 class="category-title">Search Results</h3>
+
+                {% for row in blogs %}
+                <div class="d-md-flex post-entry-2 small-img">
+                    <a href="/read/{{row[0]}}" class="me-4 thumbnail">
+                        <img src="{{ url_for('static', filename='blogImages/' + row[5]) }}" alt="" class="img-fluid">
+                    </a>
+                    <div>
+                        <div class="post-meta"><span class="date">{{row[8]}}</span> <span class="mx-1">&bullet;</span> <span>{{row[6]}}</span></div>
+                        <h3><a href="/read/{{row[0]}}">{{ row[3] }}</a></h3>
+                        <p>{{ row[4][:290] | safe }}{% if row[4]|length > 290 %}...{% endif %}</p>
+                        <div class="d-flex align-items-center author">
+                            <div class="photo"><img src="{{ url_for('static', filename='blogImages/' + row[13]) }}" alt="" class="img-fluid"></div>
+                            <div class="name">
+                                <h3 class="m-0 p-0">{{row[10]}} {{row[11]}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+                <!-- Paging -->
+
+                <!-- End Paging -->
+
+            </div>
+
+            <div class="col-md-3">
+                <!-- ======= Sidebar ======= -->
+
+
+
+
+                <div class="aside-block">
+                    <h3 class="aside-title">Categories</h3>
+                    <ul class="aside-links list-unstyled">
+                        {% for category in category %}
+                        <li><a href="/category/{{category[0]}}"><i class="bi bi-chevron-right"></i> {{category[1]}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <!-- End Categories -->
+
+
+
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End Search Result -->
+{% endblock %}

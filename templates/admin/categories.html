@@ -1,0 +1,22 @@
+{% extends "/admin/base.html" %} {% block content %}
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Action</th>
+    </tr>
+    {% for cat in cat %}
+    <tr>
+        <td>{{ cat[0] }}</td>
+        <td>{{ cat[1] }}</td>
+        <td>{{ cat[2] }}</td>
+        <td>
+            <a href="/admin/category/edit/{{ cat[0] }}">Edit</a>
+            <!-- Add a delete link if you want to implement category deletion -->
+            <a href="/admin/category/delete/{{ cat[0] }}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="/admin/add_category">Add Category</a> {% endblock %}

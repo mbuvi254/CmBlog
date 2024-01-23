@@ -1,0 +1,12 @@
+{% extends "/admin/base.html" %} {% block content %}
+<h1>Edit Category</h1>
+<form method="POST" action="/admin/category/edit/{{ category[0] }}">
+    <label for="categoryName">Category Name:</label>
+    <input type="text" id="categoryName" name="categoryName" value="{{ category[1] }}" class="form-control" required>
+    <br>
+    <label for="categoryDesc">Category Description:</label>
+    <textarea id="categoryDesc" name="categoryDesc" class="form-control" required>{{ category[2] }}</textarea>
+    <br>
+    <input type="submit" value="Update" class="w-100 btn btn-primary">
+</form>
+{% endblock %}

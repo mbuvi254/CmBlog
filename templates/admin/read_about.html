@@ -1,0 +1,16 @@
+{% extends "/admin/base.html" %} {% block content %}
+<div class="container">
+{% for about in about %}
+<div class="card">
+<img src="{{ url_for('static', filename='blogImages/' + about[3]) }}" alt="Blog Image" width="200">
+</div>
+<div class="card" style="padding:1rem;">
+<h2>{{ about[1] }}</h2>
+<p>{{ about[4] }}</p>
+<p>{{ about[2] }}</p>
+</div>
+<a href="/admin/about_list" class="w-100 btn btn-primary">Back to About</a> 
+</div>
+{% endfor %}
+
+{% endblock %}

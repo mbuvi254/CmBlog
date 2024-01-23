@@ -1,0 +1,15 @@
+{% extends '/admin/base.html' %} {% block content %}
+<h1>Add About</h1>
+
+<form method="POST" action="/admin/about/add" enctype="multipart/form-data">
+    <label for="Title">Title:</label>
+    <input type="text" id="title" name="title" class="form-control" required>
+    <br>
+    <label for="Image">Image:</label>
+    <input type="file" id="aboutImage" name="aboutImage" class="form-control" accept="image/*">
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" class="form-control" required></textarea>
+    <br>
+    <input type="submit" value="Add About" class="w-100 btn btn-primary">
+</form>
+{% endblock %}

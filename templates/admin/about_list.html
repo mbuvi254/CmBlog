@@ -1,0 +1,37 @@
+{% extends '/admin/base.html' %}
+{% block content %}
+    <h1>About</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for about in about %}
+            <tr>
+                 <td>{{ about[0] }}</td>
+                  <td>
+                    {% if about[3] %}
+                        <img src="{{ url_for('static', filename='blogImages/' + about[3]) }}" alt="Blog Image" width="100">
+                    {% else %}
+                        No Image
+                    {% endif %}
+                </td>
+                <td>{{ about[1] }}</td>
+                <td>{{ about[4] }}</td>
+               
+                <td>
+                    <a href="/admin/about/{{ about[0] }}" class="btn btn-secondary">Read</a>
+                    <a href="/admin/about/edit/{{ about[0] }}" class="btn btn-primary">Edit</a>
+                    <a href="/admin/about/delete/{{ about[0] }}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends '/staff/base.html' %}
+{% block content %}
+ 
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Blog Image</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for blog in blogs %}
+            <tr>
+                 <td>{{ blog[0] }}</td>
+                   <td>
+                    {% if blog[3] %}
+                        <img src="{{ url_for('static', filename='blogImages/' + blog[3]) }}" style="height:8rem; width:12 ;" alt="Blog Image" width="" class="img-fluid">
+                       
+
+                    {% else %}
+                        No Image
+                    {% endif %}
+                </td>
+                <td>{{ blog[1] }}</td>
+                <td>{{ blog[6] }}</td>
+                <td>
+                    {% if blog[4] %}
+                    <a href="" class="btn btn-success">Published</a>
+                     {% else %}
+                     <a href="" class="btn btn-secondary">Reviewing</a>
+                     {% endif %}
+
+                </td>
+              
+
+                <td>
+                    <a href="/staff/blog/{{ blog[0] }}" class="btn btn-secondary">Read</a>
+                    <a href="/staff/blog/edit/{{ blog[0] }}" class="btn btn-primary">Edit</a>
+                    <a href="/staff/blog/delete/{{ blog[0] }}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+          <tfoot>
+            <tr>
+                <th>Id</th>
+                <th>Blog Image</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}

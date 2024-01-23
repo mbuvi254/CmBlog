@@ -1,0 +1,26 @@
+{% extends "/admin/base.html" %} {% block content %}
+<h1>Edit Blog</h1>
+<a href="/admin/blogs">Blogs</a>
+<form method="POST" action="/admin/blog/edit/{{ blog[0] }}" enctype="multipart/form-data">
+    <input type="text" name="authorID" value="{{ blog[2] }}" class="form-control" required>
+    <label for="blogTitle">Title:</label>
+    <input type="text" id="blogTitle" name="blogTitle" value="{{ blog[3] }}" class="form-control" required>
+    <br>
+    <label for="blogContent">Content:</label>
+    <textarea id="blogContent" name="blogContent" class="form-control" required>{{ blog[4] }}</textarea>
+    <br>
+    <label for="categoryID">Category:</label>
+    <select id="categoryID" name="categoryID" class="form-control" required>
+      <option value="{{blog[1]}}">{{blog[8]}}</option>
+            {% for category in categories %}
+            <option value="{{ category[0] }}" {% if category[0] == blog[3] %}selected{% endif %}>{{ category[1] }}</option>
+            {% endfor %}
+        </select>
+    <label for="blogImage">Image:</label>
+    <input type="file" value="" id="blogImage" name="blogImage" class="form-control" accept="image/*">
+    <br> {% if blog[5] %}
+    <img src="{{ url_for('static', filename='blogImage/' + blog[5]) }}" alt="Blog Image" width="100"> {% else %} No Image {% endif %}
+
+    <input type="submit" value="Update Blog" class="w-100 btn btn-primary">
+</form>
+{% endblock %}
